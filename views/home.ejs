@@ -1,11 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>home Page</title>
+    <%- include('./partials/head') %>
+    <title>Home Page</title>
   </head>
   <body>
-    <h1>this is our home page for my blog app</h1>
+    <%- include('./partials/nav') %>
+
+    <div class="container mt-5">
+      <h1>Home Page</h1>
+
+      <pre><%= JSON.stringify(user, null, 2) %></pre>
+    </div>
+
+    <%- include('./partials/script') %>
   </body>
 </html>
