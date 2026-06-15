@@ -6,6 +6,7 @@ const path = require("path");
 
 const userRoute = require("./routes/user");
 const blogRoute = require("./routes/blog");
+const Blog = require("./models/blog");
 
 const {
   checkForAuthenticationCookie,
@@ -32,7 +33,7 @@ app.use(cookieParser());
 app.use(checkForAuthenticationCookie("token"));
 
 // Static Files Middleware (IMPORTANT)
-app.use(express.static(path.resolve("./public/uploads")));
+app.use(express.static(path.resolve("./public")));
 
 // View Engine Setup
 app.set("view engine", "ejs");
@@ -40,8 +41,11 @@ app.set("views", path.resolve("./views"));
 
 // Home Route
 app.get("/", async (req, res) => {
+  const allBlogs = await Blog.find({});
+
   return res.render("home", {
     user: req.user,
+    blogs: allBlogs,
   });
 });
 
